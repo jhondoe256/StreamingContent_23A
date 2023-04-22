@@ -1,0 +1,15 @@
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\bin\Debug\net7.0\StreamingContent.Repository.deps.json
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\bin\Debug\net7.0\StreamingContent.Repository.dll
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\bin\Debug\net7.0\StreamingContent.Repository.pdb
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\bin\Debug\net7.0\StreamingContent.Data.dll
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\bin\Debug\net7.0\StreamingContent.Data.pdb
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.csproj.AssemblyReference.cache
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.GeneratedMSBuildEditorConfig.editorconfig
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.AssemblyInfoInputs.cache
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.AssemblyInfo.cs
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.csproj.CoreCompileInputs.cache
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.csproj.CopyComplete
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.dll
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\refint\StreamingContent.Repository.dll
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\StreamingContent.Repository.pdb
+c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\obj\Debug\net7.0\ref\StreamingContent.Repository.dll
