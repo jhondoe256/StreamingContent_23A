@@ -8,18 +8,15 @@
     ".NETCoreApp,Version=v7.0": {
       "StreamingContent.Repository/1.0.0": {
         "dependencies": {
-          "StreamingContent.Data": "1.0.0.0"
+          "StreamingContent.Data": "1.0.0"
         },
         "runtime": {
           "StreamingContent.Repository.dll": {}
         }
       },
-      "StreamingContent.Data/1.0.0.0": {
+      "StreamingContent.Data/1.0.0": {
         "runtime": {
-          "StreamingContent.Data.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "StreamingContent.Data.dll": {}
         }
       }
     }
@@ -30,8 +27,8 @@
       "serviceable": false,
       "sha512": ""
     },
-    "StreamingContent.Data/1.0.0.0": {
-      "type": "reference",
+    "StreamingContent.Data/1.0.0": {
+      "type": "project",
       "serviceable": false,
       "sha512": ""
     }

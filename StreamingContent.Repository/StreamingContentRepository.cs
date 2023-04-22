@@ -4,7 +4,7 @@ public class StreamingContentRepository
     //* This is the object that will hold ALL OF THE STREAMING CONTENT!
     //* this is a COLLECTION!
     //! It represents our DATABASE (ITS FAKE FOR NOW...)
-    private readonly List<StreamingContentEntity> _contentDirectory = new List<StreamingContentEntity>();
+    protected readonly List<StreamingContentEntity> _contentDirectory = new List<StreamingContentEntity>();
 
     //* We can use C.R.U.D on this collection!
 

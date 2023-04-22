@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "StreamingContent.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/StreamingContent.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StreamingContent.Data.dll": {}
+        }
+      },
+      "StreamingContent.Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "StreamingContent.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/StreamingContent.Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StreamingContent.Repository.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "StreamingContent.Data/1.0.0": {
+      "type": "project",
+      "path": "../StreamingContent.Data/StreamingContent.Data.csproj",
+      "msbuildProject": "../StreamingContent.Data/StreamingContent.Data.csproj"
+    },
+    "StreamingContent.Repository/1.0.0": {
+      "type": "project",
+      "path": "../StreamingContent.Repository/StreamingContent.Repository.csproj",
+      "msbuildProject": "../StreamingContent.Repository/StreamingContent.Repository.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "StreamingContent.Data >= 1.0.0",
+      "StreamingContent.Repository >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Tinka\\.nuget\\packages\\": {},
@@ -45,7 +83,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\StreamingContent.Data.csproj": {
+              "projectPath": "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\StreamingContent.Data.csproj"
+            },
+            "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Repository\\StreamingContent.Repository.csproj": {
+              "projectPath": "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Repository\\StreamingContent.Repository.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

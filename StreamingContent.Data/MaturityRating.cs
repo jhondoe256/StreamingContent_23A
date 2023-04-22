@@ -1,6 +1,7 @@
 
 public enum MaturityRating
 {
+    UNDEFINED = 0,
     G = 1,
     PG,
     PG_13,
