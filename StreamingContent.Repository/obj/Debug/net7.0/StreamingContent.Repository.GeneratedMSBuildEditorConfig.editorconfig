@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StreamingContent.Repository
-build_property.ProjectDir = C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\
+build_property.ProjectDir = c:\ElevenFiftyProjects\codingFoundations\dotnetProjects\streamingContent\StreamingContent.Repository\

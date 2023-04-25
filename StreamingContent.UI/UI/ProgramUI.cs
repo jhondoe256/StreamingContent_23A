@@ -1,6 +1,13 @@
 
 public class ProgramUI
 {
+    private readonly IConsole _console;
+
+    public ProgramUI(IConsole console)
+    {
+        _console = console;
+    }
+
     private readonly StreamingContentRepository _scRepo = new StreamingContentRepository();
 
     //Entry Point to app
@@ -16,8 +23,8 @@ public class ProgramUI
 
         while (continueToRun)
         {
-            Console.Clear();
-            Console.WriteLine("Please Make a Selection:\n" +
+            _console.Clear();
+            _console.WriteLine("Please Make a Selection:\n" +
             "1. Show All Streaming Content\n" +
             "2. Find Streaming Content by Title\n" +
             "3. Add New Streaming Content\n" +
@@ -26,7 +33,7 @@ public class ProgramUI
             "6. Exit Application\n"
             );
 
-            string userInput = Console.ReadLine()!;
+            string userInput = _console.ReadLine()!;
 
             switch (userInput)
             {
@@ -58,13 +65,13 @@ public class ProgramUI
                 case "6":
                 case "six":
                     continueToRun = false;
-                    System.Console.WriteLine("Thanks for using Streaming Content!");
+                    _console.WriteLine("Thanks for using Streaming Content!");
                     PauseUntilKeyPress();
-                    Console.Clear();
+                    _console.Clear();
                     break;
 
                 default:
-                    System.Console.WriteLine("Please enter a valid number between 1-6.");
+                    _console.WriteLine("Please enter a valid number between 1-6.");
                     PauseUntilKeyPress();
                     break;
             }
@@ -73,33 +80,138 @@ public class ProgramUI
 
     private void RemoveContentFromList()
     {
-        throw new NotImplementedException();
+        //1. Get complete list of streaming content
+        //todo: Remember List<T> start at index 0. (any collection)
+        List<StreamingContentEntity> contentList = _scRepo.GetAllContent();
+
+        //2. check if there is any content in 'contentList'
+        if (contentList.Count() > 0)
+        {
+            //3. Ask user which content to remove
+            _console.WriteLine("Which would you like to remove.");
+
+            //4. Menu counter
+            int count = 0;
+            foreach (var content in contentList)
+            {
+                count++;
+                _console.WriteLine($"{count}. {content.Title}");
+            }
+
+            //5. Manipulate user input
+            int targetContentId = int.Parse(_console.ReadLine()!);
+            int targetIndex = targetContentId - 1;
+
+            if (targetIndex >= 0 && targetIndex < contentList.Count())
+            {
+                StreamingContentEntity desiredContent = contentList[targetIndex];
+
+                if (_scRepo.DeleteExistingContent(desiredContent))
+                {
+                    _console.WriteLine($"{desiredContent.Title} successfully removed.");
+                }
+                else
+                {
+                    _console.WriteLine("Deletion unsuccessful!");
+                }
+            }
+            else
+            {
+                _console.WriteLine("I can't do that!, No content has that ID.");
+            }
+        }
+        else
+        {
+            _console.WriteLine("Sorry there is no content available.");
+        }
     }
 
     private void UpdateExistingContent()
     {
-        throw new NotImplementedException();
+        try
+        {
+            //Find the content by title for update.
+            _console.WriteLine("Please input a Title.");
+            var userInput = _console.ReadLine();
+
+            var content = _scRepo.GetContent(userInput!);
+
+            if (content != null)
+            {
+                _console.Clear();
+
+                StreamingContentEntity scContent = new StreamingContentEntity();
+
+                //create empty form
+                _console.WriteLine("Please enter a title: ");
+                scContent.Title = _console.ReadLine()!;
+
+                _console.WriteLine("Please enter a description: ");
+                scContent.Description = _console.ReadLine()!;
+
+                _console.WriteLine("Please enter a star rating (1-10)");
+                scContent.StarRating = double.Parse(_console.ReadLine()!);
+
+                scContent.MaturityRating = GiveMeAMaturityRating(scContent);
+                _console.Clear();
+                _console.WriteLine("Select a Genre: \n" +
+                "1. Horror\n" +
+                "2. RomCom\n" +
+                "3. SciFi\n" +
+                "4. Documentary\n" +
+                "5. Bromance\n" +
+                "6. Drama\n" +
+                "7. Action\n");
+
+                string genreInput = _console.ReadLine()!;
+                int genreValue = int.Parse(genreInput);
+
+                scContent.TypeOfGenre = (GenreType)genreValue;
+
+                //see if EVERTHNIG IS GOING TO WORK
+                bool isSuccessfull = _scRepo.UpdateExistingContent(content.Title, scContent);
+                if (isSuccessfull)
+                {
+                    _console.WriteLine($"The content named: {scContent.Title} WAS UPDATED to the database.");
+                }
+                else
+                {
+                    _console.WriteLine($"The content named: {scContent.Title} WAS NOT UPDATED to the database.");
+                }
+
+            }
+            else
+            {
+                _console.WriteLine($"Sorry, no available content: {userInput}");
+            }
+            //  PauseUntilKeyPress();
+        }
+        catch (Exception ex)
+        {
+            _console.WriteLine(ex.Message);
+        }
+        PauseUntilKeyPress();
     }
 
     private void CreateNewStreamingContent()
     {
-        Console.Clear();
+        _console.Clear();
 
         //create empty form
         StreamingContentEntity content = new StreamingContentEntity();
 
-        System.Console.WriteLine("Please enter a title: ");
-        content.Title = Console.ReadLine()!;
+        _console.WriteLine("Please enter a title: ");
+        content.Title = _console.ReadLine()!;
 
-        System.Console.WriteLine("Please enter a description: ");
-        content.Description = Console.ReadLine()!;
+        _console.WriteLine("Please enter a description: ");
+        content.Description = _console.ReadLine()!;
 
-        System.Console.WriteLine("Please enter a star rating (1-10)");
-        content.StarRating = double.Parse(Console.ReadLine()!);
+        _console.WriteLine("Please enter a star rating (1-10)");
+        content.StarRating = double.Parse(_console.ReadLine()!);
 
         content.MaturityRating = GiveMeAMaturityRating(content);
-        Console.Clear();
-        System.Console.WriteLine("Select a Genre: \n" +
+        _console.Clear();
+        _console.WriteLine("Select a Genre: \n" +
         "1. Horror\n" +
         "2. RomCom\n" +
         "3. SciFi\n" +
@@ -108,27 +220,27 @@ public class ProgramUI
         "6. Drama\n" +
         "7. Action\n");
 
-        string genreInput = Console.ReadLine()!;
+        string genreInput = _console.ReadLine()!;
         int genreValue = int.Parse(genreInput);
 
         content.TypeOfGenre = (GenreType)genreValue;
 
-        System.Console.WriteLine("Is this a:\n" +
+        _console.WriteLine("Is this a:\n" +
         "1. Movie\n" +
         "2. Show\n");
 
         var streamingContentValue = ConvertMe(content);
-        System.Console.WriteLine($"Streaming content is now of type: {streamingContentValue.GetType().Name}");
+        _console.WriteLine($"Streaming content is now of type: {streamingContentValue.GetType().Name}");
 
         //see if EVERTHNIG IS GOING TO WORK
         bool isSuccessfull = _scRepo.AddContentToDirectory(streamingContentValue);
         if (isSuccessfull)
         {
-            System.Console.WriteLine($"The content named: {streamingContentValue.Title} WAS ADDED to the database.");
+            _console.WriteLine($"The content named: {streamingContentValue.Title} WAS ADDED to the database.");
         }
         else
         {
-            System.Console.WriteLine($"The content named: {streamingContentValue.Title} WAS NOT ADDED to the database.");
+            _console.WriteLine($"The content named: {streamingContentValue.Title} WAS NOT ADDED to the database.");
         }
 
         PauseUntilKeyPress();
@@ -137,14 +249,14 @@ public class ProgramUI
     private StreamingContentEntity ConvertMe(StreamingContentEntity content)
     {
 
-        string userInputSC_contentType = Console.ReadLine()!;
+        string userInputSC_contentType = _console.ReadLine()!;
         switch (userInputSC_contentType)
         {
             case "1":
             case "Movie":
-                System.Console.WriteLine("-- Movie Creation Menu --");
-                System.Console.WriteLine("Please enter this movies runtime.");
-                double movieRuntime = double.Parse(Console.ReadLine()!);
+                _console.WriteLine("-- Movie Creation Menu --");
+                _console.WriteLine("Please enter this movies runtime.");
+                double movieRuntime = double.Parse(_console.ReadLine()!);
                 var movie = new Movie(
                 content.Title
                 , content.Description
@@ -157,16 +269,16 @@ public class ProgramUI
 
             case "2":
             case "Show":
-                System.Console.WriteLine("-- Show Creation Menu --");
+                _console.WriteLine("-- Show Creation Menu --");
 
-                System.Console.WriteLine("Please enter the Season Count.");
-                int seasonCount = int.Parse(Console.ReadLine()!);
+                _console.WriteLine("Please enter the Season Count.");
+                int seasonCount = int.Parse(_console.ReadLine()!);
 
-                System.Console.WriteLine("Please enter the Episode Count.");
-                int episodeCount = int.Parse(Console.ReadLine()!);
+                _console.WriteLine("Please enter the Episode Count.");
+                int episodeCount = int.Parse(_console.ReadLine()!);
 
-                System.Console.WriteLine("Please enter the episode runtime.");
-                double showRuntime = double.Parse(Console.ReadLine()!);
+                _console.WriteLine("Please enter the episode runtime.");
+                double showRuntime = double.Parse(_console.ReadLine()!);
                 var show = new Show(
                   seasonCount
                 , episodeCount
@@ -179,14 +291,14 @@ public class ProgramUI
                 );
                 return show;
             default:
-                System.Console.WriteLine("Sorry, invalid selection. Returning Default Type (Streaming Content Entity).");
+                _console.WriteLine("Sorry, invalid selection. Returning Default Type (Streaming Content Entity).");
                 return content;
         }
     }
 
     private MaturityRating GiveMeAMaturityRating(StreamingContentEntity content)
     {
-        System.Console.WriteLine("Select a Maturity rating:\n" +
+        _console.WriteLine("Select a Maturity rating:\n" +
         "1. G\n" +
         "2. PG\n" +
         "3. PG 13\n" +
@@ -199,7 +311,7 @@ public class ProgramUI
         "10. TV MA\n"
         );
 
-        string maturityRating = Console.ReadLine()!;
+        string maturityRating = _console.ReadLine()!;
 
         switch (maturityRating)
         {
@@ -224,16 +336,16 @@ public class ProgramUI
             case "10":
                 return MaturityRating.TV_MA;
             default:
-                System.Console.WriteLine("Invalid Operation");
+                _console.WriteLine("Invalid Operation");
                 return MaturityRating.UNDEFINED;
         }
     }
 
     private void ShowContentByTitle()
     {
-        Console.Clear();
-        System.Console.WriteLine("Enter a Title: ");
-        string title = Console.ReadLine()!;
+        _console.Clear();
+        _console.WriteLine("Enter a Title: ");
+        string title = _console.ReadLine()!;
 
         StreamingContentEntity content = _scRepo.GetContent(title);
         if (content != null)
@@ -242,7 +354,7 @@ public class ProgramUI
         }
         else
         {
-            System.Console.WriteLine("Invalid title. Could not find resuls.");
+            _console.WriteLine("Invalid title. Could not find resuls.");
         }
 
         PauseUntilKeyPress();
@@ -250,7 +362,7 @@ public class ProgramUI
 
     private void ShowAllContent()
     {
-        Console.Clear();
+        _console.Clear();
 
         List<StreamingContentEntity> ListOfContent = _scRepo.GetAllContent();
 
@@ -264,7 +376,7 @@ public class ProgramUI
 
     private void DisplayContent(StreamingContentEntity content)
     {
-        System.Console.WriteLine($"Title: {content.Title}\n" +
+        _console.WriteLine($"Title: {content.Title}\n" +
         $"Description: {content.Description}\n" +
         $"Genere: {content.TypeOfGenre}\n" +
         $"Stars: {content.StarRating}\n" +
@@ -274,8 +386,8 @@ public class ProgramUI
 
     private void PauseUntilKeyPress()
     {
-        System.Console.WriteLine("Press any key to continue.");
-        Console.ReadKey();
+        _console.WriteLine("Press any key to continue.");
+        _console.ReadKey();
     }
 
     private void SeedContentList()

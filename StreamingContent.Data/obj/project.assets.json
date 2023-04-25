@@ -16,11 +16,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\StreamingContent.Data.csproj",
+      "projectUniqueName": "c:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\StreamingContent.Data.csproj",
       "projectName": "StreamingContent.Data",
-      "projectPath": "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\StreamingContent.Data.csproj",
+      "projectPath": "c:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\StreamingContent.Data.csproj",
       "packagesPath": "C:\\Users\\Tinka\\.nuget\\packages\\",
-      "outputPath": "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\obj\\",
+      "outputPath": "c:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\streamingContent\\StreamingContent.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\DevExpress 22.2\\Components\\Offline Packages",
@@ -73,7 +73,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
